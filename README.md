@@ -4,6 +4,12 @@
 
 This repo contains my configuration for `golangci-lint` and a small commandline utility, which helps to quickly place config to any project folder.
 
+## Installation
+
+```bash
+go install github.com/heartwilltell/lintcfg@latest
+```
+
 ## Usage
 ```
 lintcfg - Strict opinionated golangci-lint config
