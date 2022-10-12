@@ -1,4 +1,4 @@
-module lintcfg
+module github.com/heartwilltell/lintcfg
 
 go 1.19
 
