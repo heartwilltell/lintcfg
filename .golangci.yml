@@ -83,7 +83,6 @@ linters:
     - tagliatelle # Checks the struct tags
     - tenv # tenv is analyzer that detects using os.Setenv instead of t.Setenv since Go1.17
     - testableexamples # linter checks if examples are testable (have an expected output)
-    - testpackage # linter that makes you use a separate _test package
     - thelper # thelper detects golang test helpers without t.Helper() call and checks the consistency of test helpers
     - usestdlibvars # A linter that detect the possibility to use variables/constants from the Go standard library
     - varnamelen # checks that the length of a variable's name matches its scope
@@ -104,6 +103,7 @@ linters:
     - nosnakecase # nosnakecase is a linter that detects snake case of variable naming and function name
     - scopelint # Scopelint checks for unpinned variables in go programs
     # [disabled]
+    - testpackage # linter that makes you use a separate _test package
     - gochecknoglobals # check that no global variables exist
     - exhaustruct # Checks if all structure fields are initialized
 

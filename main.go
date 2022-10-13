@@ -6,6 +6,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"runtime/debug"
 	"time"
 
 	"github.com/heartwilltell/scotty"
@@ -71,12 +72,12 @@ func generateCommand() *scotty.Command {
 
 			data, readErr := io.ReadAll(f)
 			if readErr != nil {
-				return fmt.Errorf("failed to generate config file: %w", openErr)
+				return fmt.Errorf("failed to read embedded config file: %w", openErr)
 			}
 
 			p, pathErr := filepath.Abs(args[0])
 			if pathErr != nil {
-				return fmt.Errorf("invalid path: %w", pathErr)
+				return fmt.Errorf("failed to resolve absolute path: %w", pathErr)
 			}
 
 			if err := os.WriteFile(filepath.Join(p, "/.golangci.yml"), data, filePermission); err != nil {
@@ -98,6 +99,13 @@ func versionCommand() *scotty.Command {
 			fmt.Printf("Built from: %s [%s]\n", Branch, Commit)
 			fmt.Printf("Built on: %s\n", BuildTime)
 			fmt.Printf("Built time: %v\n", time.Now().UTC())
+
+			info, ok := debug.ReadBuildInfo()
+			if !ok {
+				return nil
+			}
+
+			fmt.Printf("Go version: %s\n", info.GoVersion)
 
 			return nil
 		},
